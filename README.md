@@ -1,13 +1,14 @@
-利用官网的WordCount例子，进行MR的单元测试，及部署到linux(shell)
+利用官网的WordCount例子，使用eclipse对MR进行单元测试，及部署到linux(shell)
 
-## MR单元测试
+## 一、MR单元测试
+ 
+  具体代码查看 org.ace.MR_WordCount.WordTest
+  可测试Map，Reduce或MapReduce，counter
 
-	org.ace.MR_WordCount.WordTest
-	可测试Map，Reduce或MapReduce，counter
-
-## 部署程序：
+## 二、部署程序：
 前提：linux环境，hadoop环境
-### 上传程序下所有文件夹到以下linux目录（也可以用其它目录，但要修改start.sh的WORKPATH变量为相应的路径）
+### 上传程序下所有文件夹到以下linux目录
+（也可以用其它目录，但要修改start.sh的WORKPATH变量为相应的路径）
 >/home/bigdata/project/lsj/wordcount
 
 ```
@@ -16,7 +17,8 @@ $ls
 file  input  log  mr  shell
 ```
 
-### 上传file/input下文件到hdfs目录，/tmp/wordcount/input
+### 上传file/input下文件到hdfs目录
+ /tmp/wordcount/input
 （也可以用其它目录，但要修改start.sh的INPUT变量为相应的路径）
 
 ```

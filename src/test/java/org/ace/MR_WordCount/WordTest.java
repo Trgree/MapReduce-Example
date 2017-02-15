@@ -34,10 +34,12 @@ public class WordTest {
 
 	@Test
 	public void testMapper() throws IOException {
+		// map输入
 		mapDriver.withInput(new LongWritable(), new Text(
 				"World Bye World"));
 		mapDriver.withInput(new LongWritable(), new Text(
 				"Hadoop Goodbye Hadoop a"));
+		// map预期输出
 		mapDriver.withOutput(new Text("World"), new IntWritable(1));
 		mapDriver.withOutput(new Text("Bye"), new IntWritable(1));
 		mapDriver.withOutput(new Text("World"), new IntWritable(1));
@@ -45,30 +47,43 @@ public class WordTest {
 		mapDriver.withOutput(new Text("Goodbye"), new IntWritable(1));
 		mapDriver.withOutput(new Text("Hadoop"), new IntWritable(1));
 		mapDriver.withOutput(new Text("a"), new IntWritable(1));
+		
+		// 运行测试
 		mapDriver.runTest();
 	}
 
 	@Test
 	public void testReducer() throws IOException {
+		// reduce输入
 		List<IntWritable> values = new ArrayList<IntWritable>();
 		values.add(new IntWritable(2));
 		values.add(new IntWritable(1));
 		reduceDriver.withInput(new Text("Hadoop"), values);
+		
+		// reduce预期输出
 		reduceDriver.withOutput(new Text("Hadoop"), new IntWritable(3));
+		
+		// 运行测试
 		reduceDriver.runTest();
 	}
 	
 	@Test
 	public void testMapperReducer() throws IOException {
+		// mapreduce输入
 		mapReduceDriver.withInput(new LongWritable(), new Text(
 				"World Bye World"));
 		mapReduceDriver.withInput(new LongWritable(), new Text(
 				"Hadoop Goodbye Hadoop a"));
+		
+		// mapreduce预期输出
 		mapReduceDriver.withOutput(new Text("Hadoop"), new IntWritable(2));
 		mapReduceDriver.withOutput(new Text("Bye"), new IntWritable(1));
 		mapReduceDriver.withOutput(new Text("Hadoop"), new IntWritable(2));
 		mapReduceDriver.withOutput(new Text("Goodbye"), new IntWritable(1));
 		mapReduceDriver.withOutput(new Text("a"), new IntWritable(1));
+		
+		// 运行测试
+		mapReduceDriver.runTest();
 	}
 
 	@Test
