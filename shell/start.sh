@@ -14,9 +14,12 @@ JAVALIB=${WORKPATH}/mr
 LOGFILE=${WORKPATH}/log/wordcount_${DATE}.log
 MRJAR=$JAVALIB/wordcount.jar
 
-#HDFS
-INPUT=/tmp/wordcount/input
-OUTPUT=/tmp/wordcount/ouput
+ARGS="
+-D input=/tmp/wordcount/input 
+-D output=/tmp/wordcount/ouput 
+-D date=$DATE
+-D mapreduce.job.reduces=4
+"
 
 echo "DATE" ${DATE}
 echo "WORKPATH" ${WORKPATH}
@@ -27,7 +30,7 @@ echo "MRJAR" ${MRJAR}
 
 echo `date +"%Y-%m-%d %H:%M:%S"`  "Start..."  | tee -a $LOGFILE
 
-hadoop jar ${MRJAR} org.ace.example.WordDriver -D input=$INPUT -D output=$OUTPUT -D date=$DATE -D mapreduce.job.reduces=4   1>>$LOGFILE 2>>$LOGFILE
+hadoop jar ${MRJAR} org.ace.example.WordDriver $ARGS  1>>$LOGFILE 2>>$LOGFILE
 
 ret=$?
 if [ ${ret} -ne 0 ]; then
