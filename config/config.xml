@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property>
+		<name>ace.test.conf</name>
+		<value>hahah</value>
+		<description>测试配置表</description>
+	</property>
+</configuration>
