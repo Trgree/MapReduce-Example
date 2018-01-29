@@ -8,8 +8,12 @@ fi
 
 DATE=$1
 
-#LOCAL
-WORKPATH=/home/bigdata/project/lsj/wordcount
+SHELLPATH=$(cd `dirname $0`; pwd)
+echo $SHELLPATH
+[ -z $EXAMPLE_HOME ] && EXAMPLE_HOME=`cd "$SHELLPATH/../" >/dev/null; pwd`
+echo $EXAMPLE_HOME
+WORKPATH=$EXAMPLE_HOME
+
 JAVALIB=${WORKPATH}/mr
 LOGFILE=${WORKPATH}/log/wordcount_${DATE}.log
 MRJAR=$JAVALIB/wordcount.jar
